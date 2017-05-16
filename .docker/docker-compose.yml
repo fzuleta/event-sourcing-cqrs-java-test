@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  # to enable the management plugin (web)
+  # docker exec fz_rabbitmq rabbitmq-plugins enable rabbitmq_management
+  rabbitmq:
+    hostname: fz_rabbitmq
+    container_name: fz_rabbitmq
+    image: rabbitmq:alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=root
+      - RABBITMQ_DEFAULT_PASS=root
+      - RABBITMQ_ERLANG_COOKIE=fzcookie
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  webserver:
+    container_name: fz_webserver
+    build:
+      context: .
+      dockerfile: ./webserver/file.dockerfile
+    ports:
+      - "8888:8888"
+
+  money:
+    container_name: fz_money
+    build:
+      context: .
+      dockerfile: ./money/file.dockerfile
+
+  users:
+    container_name: fz_users
+    build:
+      context: .
+      dockerfile: ./users/file.dockerfile
+
+
+
+

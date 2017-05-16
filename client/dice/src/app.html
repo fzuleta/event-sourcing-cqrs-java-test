@@ -1,0 +1,29 @@
+<template>
+<style type="text/css">
+    body,html{
+        font-family: "sans-serif";
+    }    
+</style>
+<div show.bind="!connectionSucceded">
+    ${connectionMessage}
+</div>
+<div show.bind="connectionSucceded">
+    <h1>Welcome: Balance: ${balance}</h1>
+    <div>
+        UserId (0-2):
+        <input type="text" value.bind="userId" disabled.bind="connecting">
+    </div>
+    <div>
+        Amount:
+        <input type="text" value.bind="betAmount" disabled.bind="connecting">
+    </div>
+    <div>
+      <button type="text" click.trigger="play()" disabled.bind="connecting">
+          Play
+      </button>
+    </div>
+
+
+    <h1 show.bind="winResult != ''">${winResult}</h1>
+</div>
+</template>
