@@ -35,6 +35,12 @@ services:
       context: .
       dockerfile: ./users/file.dockerfile
 
+  eventstore:
+    container_name: fz_eventstore
+    build:
+      context: .
+      dockerfile: ./eventstore/file.dockerfile
+
 
 
 

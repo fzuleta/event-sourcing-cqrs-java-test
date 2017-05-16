@@ -5,7 +5,7 @@ import common.Functions;
 import common.StaticReferences;
 import jetty.EndPointReply;
 import memory.MemoryCache;
-import user.User;
+import user.UserPoint;
 
 import static common.Functions.trace;
 
@@ -79,10 +79,14 @@ public class RabbitMQUsers extends RabbitMQ {
 
         System.out.println(" [.] " + obj.toString() + "");
 
-        User user = new User();
+        UserPoint userPoint = new UserPoint();
         switch (event){
             case "create_user":
-                endPointReply = user.createUser(obj);
+                endPointReply = userPoint.createUser(obj);
+                break;
+
+            case "get_a_random_user":
+                endPointReply = userPoint.getARandomUser();
                 break;
 
             default:

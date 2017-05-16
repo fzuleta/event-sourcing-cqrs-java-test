@@ -6,31 +6,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import static common.Properties.loadProperties;
+
 
 public class Main {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello");
 
-        Properties prop = new Properties();
-        InputStream input = null;
+        Properties prop = loadProperties("/opt/event-source/config.properties");
+        Jetty.staticFolderLocation = "/Users/gg/Desktop/event-source/client/dice";
 
-        try {
-            input = new FileInputStream("/opt/event-source/config.properties");
-            prop.load(input);
-
+        if (prop != null) {
             Jetty.staticFolderLocation = prop.getProperty("webserver_staticfiles");
-
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
 
         Jetty jetty = new Jetty();

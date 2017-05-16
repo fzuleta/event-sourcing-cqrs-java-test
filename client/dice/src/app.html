@@ -3,23 +3,31 @@
     body,html{
         font-family: "sans-serif";
     }    
+    .info {
+        font-size: 12px;
+    }
+    .balance {
+        font-size: 16px;
+    }
 </style>
 <div show.bind="!connectionSucceded">
     ${connectionMessage}
 </div>
 <div show.bind="connectionSucceded">
-    <h1>Welcome: Balance: ${balance}</h1>
-    <div>
-        UserId (0-2):
-        <input type="text" value.bind="userId" disabled.bind="connecting">
-    </div>
-    <div>
-        Amount:
+    <h4>Roll the dice:</h4>
+    <div class="info">User Id: ${user.id} </div>
+    <div class="info">Username: ${user.name} </div>
+    <div class="info">Email: ${user.email} </div>
+    <br>
+    <br>
+    <div class="balance">Balance: ${balance.gold} </div>
+    <div class="info">
+        Bet Amount:
         <input type="text" value.bind="betAmount" disabled.bind="connecting">
     </div>
     <div>
       <button type="text" click.trigger="play()" disabled.bind="connecting">
-          Play
+          Roll Dice
       </button>
     </div>
 

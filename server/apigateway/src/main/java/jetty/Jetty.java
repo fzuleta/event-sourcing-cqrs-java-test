@@ -1,14 +1,13 @@
 package jetty;
 
 import com.google.common.util.concurrent.AbstractService;
-import jetty.endpoints.money.GetBalance;
 import jetty.endpoints.play.Play;
+import jetty.endpoints.users.GetUser;
 import org.eclipse.jetty.jmx.MBeanContainer;
 import org.eclipse.jetty.server.*;
 import org.eclipse.jetty.server.handler.ContextHandlerCollection;
 import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
-import org.eclipse.jetty.server.handler.RequestLogHandler;
 import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
@@ -78,7 +77,7 @@ public class Jetty extends AbstractService {
             final ServletContextHandler servletHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
             servletHandler.setContextPath("/");
 
-            servletHandler.addServlet(GetBalance.class,     "/getbalance/*");
+            servletHandler.addServlet(GetUser.class,     "/getuser/*");
             servletHandler.addServlet(Play.class,           "/play/*");
 
             // Enable CORS - cross origin resource sharing (for http and https)

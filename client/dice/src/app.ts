@@ -5,8 +5,6 @@ import {trace} from './common/functions';
 
 @inject(EventAggregator, apigateway)
 export class App {
-    balance:String;
-    userId:String;
     betAmount:String;
     winResult:String = "";
     connectionMessage:String="Connecting to server";
@@ -14,9 +12,10 @@ export class App {
     connectionSucceded:boolean = false;
     apigateway:apigateway;
     eventAggregator:EventAggregator;
+    user={};
+    balance={};
 
     constructor(EventAggregator, apigateway){
-        this.userId = "0";
         this.betAmount = "1000";
         this.connecting = false;
         this.apigateway = apigateway;
@@ -24,9 +23,10 @@ export class App {
     }
     activate(){
         return new Promise((resolve,reject)=>{ 
-            this.apigateway.doApiCall({userId:this.userId}, "/getbalance/")
+            this.apigateway.doApiCall({}, "/getuser/")
             .then(o=>{
                 this.connectionSucceded = true;
+                this.user = o["data"];
                 this.balance = o["data"].balance;
                 resolve();
             })
@@ -42,14 +42,14 @@ export class App {
         this.connecting = true;
         this.winResult = "";
         const data = {
-            userId: this.userId,
+            userId: this.user["id"],
             betAmount: this.betAmount
         };
         this.apigateway.doApiCall(data, "/play/").then(o=>{
             this.connecting = false;
             if (o["success"]) {
                 const data = o["data"];
-                this.balance = data.balance;
+                this.balance["gold"] = data.balance;
                 if (data.winAmount){
                     this.winResult = "Win! $" + data.winAmount;
                 } else {

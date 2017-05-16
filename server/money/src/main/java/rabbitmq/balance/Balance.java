@@ -27,8 +27,7 @@ public class Balance {
         JsonObject user     = getUser(userId);
         if (user == null) return ep;
 
-        JsonObject balance = user.get("balance").getAsJsonObject();
-        ep.data.addProperty("balance", balance.get("gold").getAsBigDecimal());
+        ep.data.add("balance", user.get("balance").getAsJsonObject());
         ep.success = true;
 
         return ep;
