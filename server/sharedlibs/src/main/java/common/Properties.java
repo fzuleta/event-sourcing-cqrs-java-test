@@ -25,6 +25,8 @@ public class Properties {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                trace("Properties loaded");
             }
         }
         return prop;

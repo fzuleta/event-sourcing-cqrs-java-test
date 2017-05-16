@@ -18,7 +18,7 @@ public class Main {
 
         if (prop != null) {
             rabbit_host = prop.getProperty("rabbitmq_host");
-            orientdb_home = prop.getProperty("orientdb_home");
+            orientdb_home = prop.getProperty("odb_eventsource_home");
         }
 
         // odbManager starts rabbitMQ after it loads

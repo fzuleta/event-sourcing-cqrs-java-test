@@ -4,9 +4,9 @@ MAINTAINER Felipe Zuleta
 ARG mainDir=money
 ARG mainJar=money.jar
 
-COPY ./Server/$mainDir/target/$mainJar /opt/$mainJar
-COPY ./.docker/$mainDir/$env/firstrun.sh /
-COPY ./.docker/config.properties /opt/event-source
+COPY ./server/$mainDir/target/$mainJar /opt/$mainJar
+COPY ./.docker/$mainDir/firstrun.sh /
+COPY ./.docker/config.properties /opt/event-source/
 
 WORKDIR /opt/
 

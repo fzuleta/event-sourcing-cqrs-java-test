@@ -9,4 +9,4 @@ else
 fi
 
 cd /opt
-java -jar user.jar
+java -jar users.jar

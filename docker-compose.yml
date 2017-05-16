@@ -15,31 +15,31 @@ services:
       - "5672:5672"
       - "15672:15672"
 
-  webserver:
-    container_name: fz_webserver
-    build:
-      context: .
-      dockerfile: ./webserver/file.dockerfile
-    ports:
-      - "8888:8888"
+  # webserver:
+  #   container_name: fz_webserver
+  #   build:
+  #     context: .
+  #     dockerfile: ./.docker/webserver/file.dockerfile
+  #   ports:
+  #     - "8888:8888"
 
-  money:
-    container_name: fz_money
-    build:
-      context: .
-      dockerfile: ./money/file.dockerfile
+  # money:
+  #   container_name: fz_money
+  #   build:
+  #     context: .
+  #     dockerfile: ./.docker/money/file.dockerfile
 
-  users:
-    container_name: fz_users
-    build:
-      context: .
-      dockerfile: ./users/file.dockerfile
+  # users:
+  #   container_name: fz_users
+  #   build:
+  #     context: .
+  #     dockerfile: ./.docker/users/file.dockerfile
 
   eventstore:
     container_name: fz_eventstore
     build:
       context: .
-      dockerfile: ./eventstore/file.dockerfile
+      dockerfile: ./.docker/eventstore/file.dockerfile
 
 
 

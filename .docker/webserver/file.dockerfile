@@ -4,13 +4,13 @@ MAINTAINER Felipe Zuleta
 ARG mainDir=webserver
 ARG mainJar=webserver.jar
 
-COPY ./Server/$mainDir/target/$mainJar /opt/$mainJar
-COPY ./.docker/$mainDir/$env/firstrun.sh /
-COPY ./.docker/config.properties /opt/event-source
+COPY ./server/$mainDir/target/$mainJar /opt/$mainJar
+COPY ./.docker/$mainDir/firstrun.sh /
+COPY ./.docker/config.properties /opt/event-source/
 
 # Copy aurelia stuff ------------------------------------------------
 COPY ./client/dice/index.html /opt/aurelia/
-COPY ./web/scripts /opt/aurelia/scripts
+COPY ./client/dice/scripts /opt/aurelia/scripts
 # -------------------------------------------------------------------
 
 EXPOSE 8888 8443

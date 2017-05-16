@@ -11,6 +11,7 @@
         <module>money</module>
         <module>apigateway</module>
         <module>webserver</module>
+        <module>eventstore</module>
 	</modules>
 
 </project>

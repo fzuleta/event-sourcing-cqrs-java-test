@@ -37,7 +37,6 @@ public class ODBManager extends AbstractService {
     public String connType                      = "remote";
     public String connServer                    = "localhost";
     public String classToCheckIfDBExists        = "Player";
-    public String localFolder                   = "/Users/gg/git/gglat/.docker/ggodb";
 
     public ODBManager() {
 
@@ -53,6 +52,7 @@ public class ODBManager extends AbstractService {
     @Override
     protected void doStart() {
         try {
+            trace("odbHome: " + odbHome);
             System.setProperty("ORIENTDB_HOME", odbHome);
 
             OServerConfiguration cfg = new OServerConfiguration();

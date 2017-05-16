@@ -16,5 +16,4 @@ mvn clean package
 #currently we're embedding the final output
 
 cd ..
-cd .docker
 docker-compose up -d
