@@ -4,7 +4,7 @@
 **Client**: Aurelia.
 
 This is an experiment to:
-- try out how to communicate between services.
+- try out communicating between services using a queue message (instead of api-points|socket).
 - store state as event source and cqrs.
 
 ## How it works
@@ -31,3 +31,7 @@ RabbitMQ handles communication between services
     - listens to queue __user.money__
 
 ![Image](resources/server-setup.png)
+
+### Todo
+    - Snapshots of state
+    - Fix stuff :)
