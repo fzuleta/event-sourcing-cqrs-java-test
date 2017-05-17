@@ -15,23 +15,23 @@ This is an experiment to:
 RabbitMQ handles communication between services
 
 ### apigateway
-    - entry point from Client to Server.
-    - dispatches messages to rabbitmq queues.
+- entry point from Client to Server.
+- dispatches messages to rabbitmq queues and listens back to chain actions.
 
 ### eventstore
-    - Is the database (orientdb embedded) and also listens for __storeevent__ and keeps a record.
-    - when **users** or **money** services start, they request all events to put the memorydb up to date
+- This is the database (orientdb embedded) and also listens for **eventstore queue** and stores a record in disk.
+- when **users** or **money** services start, they request all events to put the memorydb up to date
 
 ### users
-    - when loads requests all events since begining of time to **eventstore**
-    - listens to queue __user.user__
+- when loads requests all events since begining of time from **eventstore**
+- listens to queue **user.user**
 
 ### money
-    - when loads requests all events since begining of time to **eventstore**
-    - listens to queue __user.money__
+- when loads requests all events since begining of time from **eventstore**
+- listens to queue **user.money**
 
 ![Image](resources/server-setup.png)
 
 ### Todo
-    - Snapshots of state
-    - Fix stuff :)
+- Snapshots of state
+- Fix stuff :)
