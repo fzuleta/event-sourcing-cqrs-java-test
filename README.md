@@ -9,7 +9,6 @@ This is an experiment to:
 
 ## How it works
 `sh buildandrun.sh` will build (in-order) the jar's for the microservices then it will start docker containers
-`http://localhost:8888` will load the example client.
 
 #### IMPORTANT NOTE
 
@@ -17,6 +16,7 @@ This is an experiment to:
 - run `docker-compose up` to have rabbitmq
 - run `sh build.sh`
 - run each server/{name}/target/{name}.jar with: `java -jar {name}.jar`
+- `http://localhost:8888` will load the example client.
 
 # Services
 RabbitMQ handles communication between services
@@ -26,7 +26,7 @@ RabbitMQ handles communication between services
 - dispatches messages to rabbitmq queues and listens back to chain actions.
 
 ### eventstore
-- This is the database (orientdb embedded) and also listens for **eventstore queue** and stores a record in disk.
+- This is the database (orientdb embedded) and also listens for **eventstore** queue from rabbitMQ and stores a record in disk.
 - when **users** or **money** services start, they request all events to put the memorydb up to date
 
 ### users
@@ -36,6 +36,10 @@ RabbitMQ handles communication between services
 ### money
 - when loads requests all events since begining of time from **eventstore**
 - listens to queue **user.money**
+
+### webserver
+- `http://localhost:8888` will load the example client.
+- it's a simple embedded jetty server that loads files from a folder
 
 ![Image](resources/server-setup.png)
 
