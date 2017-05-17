@@ -11,6 +11,13 @@ This is an experiment to:
 `sh buildandrun.sh` will build (in-order) the jar's for the microservices then it will start docker containers
 `http://localhost:8888` will load the example client.
 
+#### IMPORTANT NOTE
+
+**Embedded Orientdb in Docker is not working: to run the project:**
+- run `docker-compose up` to have rabbitmq
+- run `sh build.sh`
+- run each server/{name}/target/{name}.jar with: `java -jar {name}.jar`
+
 # Services
 RabbitMQ handles communication between services
 

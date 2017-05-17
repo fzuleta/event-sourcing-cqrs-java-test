@@ -15,5 +15,5 @@ mvn clean package
 #build client
 #currently we're embedding the final output
 
-cd ..
-docker-compose up -d
+# cd ..
+# docker-compose up -d

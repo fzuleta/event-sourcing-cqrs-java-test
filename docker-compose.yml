@@ -35,11 +35,11 @@ services:
   #     context: .
   #     dockerfile: ./.docker/users/file.dockerfile
 
-  eventstore:
-    container_name: fz_eventstore
-    build:
-      context: .
-      dockerfile: ./.docker/eventstore/file.dockerfile
+  # eventstore:
+  #   container_name: fz_eventstore
+  #   build:
+  #     context: .
+  #     dockerfile: ./.docker/eventstore/file.dockerfile
 
 
 
