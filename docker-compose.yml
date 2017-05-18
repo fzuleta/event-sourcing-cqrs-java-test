@@ -17,6 +17,7 @@ services:
 
   # webserver:
   #   container_name: fz_webserver
+  #   image: fz/webserver:latest
   #   build:
   #     context: .
   #     dockerfile: ./.docker/webserver/file.dockerfile
@@ -25,21 +26,24 @@ services:
 
   # money:
   #   container_name: fz_money
+  #   image: fz/money:latest
   #   build:
   #     context: .
   #     dockerfile: ./.docker/money/file.dockerfile
 
   # users:
   #   container_name: fz_users
+  #   image: fz/users:latest
   #   build:
   #     context: .
   #     dockerfile: ./.docker/users/file.dockerfile
 
-  # eventstore:
-  #   container_name: fz_eventstore
-  #   build:
-  #     context: .
-  #     dockerfile: ./.docker/eventstore/file.dockerfile
+  eventstore:
+    container_name: fz_eventstore
+    image: fz/eventstore:latest
+    build:
+      context: .
+      dockerfile: ./.docker/eventstore/file.dockerfile
 
 
 

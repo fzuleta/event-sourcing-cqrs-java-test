@@ -3,6 +3,7 @@ package orientdb;
 
 import com.google.common.util.concurrent.AbstractService;
 import com.orientechnologies.orient.client.remote.OServerAdmin;
+import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.server.OServer;
 import com.orientechnologies.orient.server.OServerMain;
@@ -37,6 +38,7 @@ public class ODBManager extends AbstractService {
     public String connType                      = "remote";
     public String connServer                    = "localhost";
     public String classToCheckIfDBExists        = "Player";
+    public String odbPathToCreate             = "";
 
     public ODBManager() {
 
@@ -100,6 +102,8 @@ public class ODBManager extends AbstractService {
             oServerEntryConfigurations[5] = createConfigProperty("log.file.level",                  "fine");
             oServerEntryConfigurations[6] = createConfigProperty("plugin.dynamic",                  "false");
 
+
+//            Orient.instance().startup();
             server = OServerMain.create();
             server.startup(cfg);
             server.activate();
@@ -174,10 +178,9 @@ public class ODBManager extends AbstractService {
             if (graph != null) { graph.shutdown(); }
 
             trace("Checking if Database needs to be re-created");
-
-            OServerAdmin serverAdmin = new OServerAdmin(
-                    connType+":" + connServer + ":"+port
-            ).connect(odb_user, odb_pass);
+            String url = connType+":" + connServer + ":"+port;
+            trace(url);
+            OServerAdmin serverAdmin = new OServerAdmin(url).connect(odb_user, odb_pass);
 
             trace("Connected as Admin");
 
@@ -192,8 +195,8 @@ public class ODBManager extends AbstractService {
             if (orientDBfactory != null && graph.getVertexType(classToCheckIfDBExists) == null) {
                 trace("Rebuilding the database");
 
-                ClassLoader classLoader = getClass().getClassLoader();
-                File file = new File(classLoader.getResource("osql/create_eventstore.osql").getFile());
+                trace("odbPathToCreate: " + odbPathToCreate);
+                File file = new File(odbPathToCreate);
 
                 Scanner scanner = new Scanner(file);
                 while (scanner.hasNextLine()) {

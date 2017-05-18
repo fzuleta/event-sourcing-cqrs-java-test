@@ -123,9 +123,9 @@
 
 
         <!--
-        RUN THIS ON GGLIBS:
-            cd Server/gglibs
-            mvn clean package install:install-file -Dfile=target/gglibs.jar -DpomFile=pom.xml
+        RUN THIS ON SharedLibs:
+            cd server/sharedlibs
+            mvn clean package install:install-file -Dfile=target/sharedlibs.jar -DpomFile=pom.xml
         -->
         <dependency>
             <groupId>com.fz</groupId>
@@ -140,6 +140,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -163,10 +164,47 @@
                     </filters>
 
                     <transformers>
+                        <!-- Services taken from orientdb-core-2.2.20.jar-->
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                            <resource>META-INF/services/com.orientechnologies.orient.core.collate.OCollateFactory</resource>
+                        </transformer>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                            <resource>META-INF/services/com.orientechnologies.orient.core.engine.OEngine</resource>
+                        </transformer>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                            <resource>META-INF/services/com.orientechnologies.orient.core.index.OIndexFactory</resource>
+                        </transformer>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                            <resource>META-INF/services/com.orientechnologies.orient.core.metadata.schema.clusterselection.OClusterSelectionStrategy</resource>
+                        </transformer>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                            <resource>META-INF/services/com.orientechnologies.orient.core.sql.functions.OSQLFunctionFactory</resource>
+                        </transformer>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                            <resource>META-INF/services/com.orientechnologies.orient.core.sql.method.OSQLMethodFactory</resource>
+                        </transformer>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                            <resource>META-INF/services/com.orientechnologies.orient.core.sql.OCommandExecutorSQLFactory</resource>
+                        </transformer>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                            <resource>META-INF/services/com.orientechnologies.orient.core.sql.operator.OQueryOperatorFactory</resource>
+                        </transformer>
+
+                        <!-- From orientdb-distributed jar -->
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                            <resource>META-INF/services/com.orientechnologies.orient.core.sql.OCommandExecutorSQLFactory</resource>
+                        </transformer>
+
+                        <!-- From orientdb-graphdb jar -->
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                            <resource>META-INF/services/com.orientechnologies.orient.stresstest.workload.OWorkload</resource>
+                        </transformer>
+
                         <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                             <manifestEntries>
                                 <Main-Class>Main</Main-Class>
                                 <Build-Number>1</Build-Number>
+                                <!--<Class-Path>${project.basedir}/src/libs</Class-Path>-->
                             </manifestEntries>
                         </transformer>
                     </transformers>

@@ -100,9 +100,9 @@
 
 
         <!--
-        RUN THIS ON GGLIBS:
-            cd Server/gglibs
-            mvn clean package install:install-file -Dfile=target/gglibs.jar -DpomFile=pom.xml
+        RUN THIS ON SharedLibs:
+            cd server/sharedlibs
+            mvn clean package install:install-file -Dfile=target/sharedlibs.jar -DpomFile=pom.xml
         -->
         <dependency>
             <groupId>com.fz</groupId>

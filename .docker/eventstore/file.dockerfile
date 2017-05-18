@@ -7,6 +7,7 @@ ARG mainJar=eventstore.jar
 COPY ./server/$mainDir/target/$mainJar /opt/$mainJar
 COPY ./.docker/$mainDir/firstrun.sh /
 COPY ./.docker/config.properties /opt/event-source/
+COPY ./.docker/$mainDir/osql /opt/orientdb/osql
 
 WORKDIR /opt/
 
