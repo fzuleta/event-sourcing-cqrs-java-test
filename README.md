@@ -4,19 +4,20 @@
 **Client**: Aurelia.
 
 This is an experiment to:
-- try out communicating between services using a queue message (instead of api-points|socket).
-- store state as event source and cqrs.
+- Communicating between services using a queue message (instead of api-points|socket).
+- Store state as event source and cqrs.
 
 ## How it works
-`sh buildandrun.sh` will build (in-order) the jar's for the microservices then it will start docker containers
+1. `sh build.sh` will build (in-order) the jar's for the microservices then it will start docker containers
+2. open browser and load `http://localhost:8888`
 
 #### IMPORTANT NOTE
+**if you're getting an error when loading localhost:8888:**
+the reason is that the state might be requested before the eventstore has loaded
 
-**Embedded Orientdb in Docker is not working: to run the project:**
-- run `docker-compose up` to have rabbitmq
-- run `sh build.sh`
-- run each server/{name}/target/{name}.jar with: `java -jar {name}.jar`
-- `http://localhost:8888` will load the example client.
+To refresh the user list by refreshing money and users:
+- `docker restart fz_money` 
+- `docker restart fz_users`
 
 # Services
 RabbitMQ handles communication between services
