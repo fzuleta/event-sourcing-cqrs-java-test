@@ -15,28 +15,37 @@ services:
       - "5672:5672"
       - "15672:15672"
 
-  # webserver:
-  #   container_name: fz_webserver
-  #   image: fz/webserver:latest
-  #   build:
-  #     context: .
-  #     dockerfile: ./.docker/webserver/file.dockerfile
-  #   ports:
-  #     - "8888:8888"
+  webserver:
+    container_name: fz_webserver
+    image: fz/webserver:latest
+    build:
+      context: .
+      dockerfile: ./.docker/webserver/file.dockerfile
+    ports:
+      - "8888:8888"
 
-  # money:
-  #   container_name: fz_money
-  #   image: fz/money:latest
-  #   build:
-  #     context: .
-  #     dockerfile: ./.docker/money/file.dockerfile
+  apigateway:
+    container_name: fz_apigateway
+    image: fz/apigateway:latest
+    build:
+      context: .
+      dockerfile: ./.docker/apigateway/file.dockerfile
+    ports:
+      - "8090:8090"
 
-  # users:
-  #   container_name: fz_users
-  #   image: fz/users:latest
-  #   build:
-  #     context: .
-  #     dockerfile: ./.docker/users/file.dockerfile
+  money:
+    container_name: fz_money
+    image: fz/money:latest
+    build:
+      context: .
+      dockerfile: ./.docker/money/file.dockerfile
+
+  users:
+    container_name: fz_users
+    image: fz/users:latest
+    build:
+      context: .
+      dockerfile: ./.docker/users/file.dockerfile
 
   eventstore:
     container_name: fz_eventstore

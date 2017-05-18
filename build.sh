@@ -19,12 +19,14 @@ mvn clean package
 cd ..
 
 #Remove any running docker containers
+docker rm -f -v fz_apigateway
 docker rm -f -v fz_webserver
 docker rm -f -v fz_money
 docker rm -f -v fz_users
 docker rm -f -v fz_eventstore
 
 # remove any images to start fresh
+docker rmi fz/apigateway:latest
 docker rmi fz/webserver:latest
 docker rmi fz/money:latest
 docker rmi fz/users:latest
