@@ -46,4 +46,4 @@ RabbitMQ handles communication between services
 
 ### Todo
 - Snapshots of state
-- Fix stuff :)
+- Fix and improve stuff :)
