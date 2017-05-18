@@ -1,10 +1,10 @@
 # event-source-test
-**Server**: RabbitMQ + Java micro services + Orientdb.
+**Server**: RabbitMQ + Java micro services + Orientdb + each running in Docker containers.
 
 **Client**: Aurelia.
 
 This is an experiment to:
-- Communicating between services using a queue message (instead of api-points|socket).
+- Communicating between services (than may run in different containers|servers) using a queue message (instead of api-points|socket).
 - Store state as event source and cqrs.
 
 ## How it works
