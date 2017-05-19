@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 myFile="/firstrun.exists"
 if [ -e "$myFile" ]; then
-    sleep 3
+    sleep 5
 
 else
     mkdir orientdb
     mkdir orientdb/eventstore
     chmod -R 755 orientdb
     touch "$myFile"
-    sleep 3
+    sleep 5
 fi
 
 cd /opt
